@@ -1,1 +1,46 @@
-<p>auth-form works!</p>
+<form (ngSubmit)="submitForm()" [formGroup]="authForm">
+  <div class="form-group" *ngIf="formType === 'register'">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      class="form-control"
+      id="username"
+      aria-describedby="emailHelp"
+      placeholder="username"
+      formControlName="username"
+    />
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      placeholder="example@gmail.com"
+      formControlName="email"
+    />
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      placeholder="********"
+      formControlName="password"
+    />
+  </div>
+  <div class="form-group form-check">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      id="remember"
+      formControlName="rememberMe"
+    />
+    <label class="form-check-label" for="remember">Remember me</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <p [routerLink]="['/auth', formType === 'register' ? 'login' : 'register']">
+    Click here to {{ formType === "register" ? "Login" : "Register" }}
+  </p>
+</form>
