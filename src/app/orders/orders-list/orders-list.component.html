@@ -12,18 +12,18 @@
   </thead>
   <tbody>
     <tr *ngFor="let order of orders" class="order">
-      <th scope="row">1</th>
-      <td>19 may 2022</td>
-      <td>Mark</td>
-      <td>New Delhi, India</td>
-      <td>+91 1234567890</td>
-      <td>{{ 1212 | currency }}</td>
+      <th scope="row">{{ order.id }}</th>
+      <td>{{ order.dueDate }}</td>
+      <td>{{ order.customerName }}</td>
+      <td>{{ order.customerAddress }}</td>
+      <td>{{ order.phone }}</td>
+      <td>{{ order.price | currency }}</td>
       <td>
         <div class="order__actions">
-          <span>
+          <span (click)="editOrder(order.id)">
             <fa-icon [icon]="icons.faEdit" [size]="'1x'"></fa-icon>
           </span>
-          <span>
+          <span (click)="deleteOrder(order.id)">
             <fa-icon [icon]="icons.faTrashCan" [size]="'1x'"></fa-icon>
           </span>
         </div>

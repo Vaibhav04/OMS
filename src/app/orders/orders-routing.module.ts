@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { OrdersResolver } from './orders.resolver';
 import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
-  {
-    path: 'orders',
+    resolve: {
+      resolvedOrdersData: OrdersResolver,
+    },
     component: OrdersComponent,
   },
 ];
