@@ -1,0 +1,23 @@
+.order {
+  padding: 1vh 1vw;
+  border-radius: 1.2em;
+
+  &__actions {
+    display: flex;
+    justify-content: space-around;
+
+    &>span {
+      transition: color var(--transition-time);
+    }
+
+    &>span:nth-child(1):hover {
+      cursor: pointer;
+      color: green;
+    }
+
+    &>span:nth-child(2):hover {
+      cursor: pointer;
+      color: red;
+    }
+  }
+}
