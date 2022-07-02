@@ -10,9 +10,14 @@ import { OrdersService } from '../orders.service';
 })
 export class OrdersShellComponent implements OnInit {
   orders: IOrder[] = [];
+  showModal = false;
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.orders = this.route.snapshot.data['resolvedOrdersData'];
+  }
+
+  toggleModal() {
+    this.showModal = !this.showModal;
   }
 }

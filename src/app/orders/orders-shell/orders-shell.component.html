@@ -1,7 +1,11 @@
 <!-- Order shell header -->
 <div class="order-shell__header">
   <h3>Your orders</h3>
-  <button class="btn btn-primary">Add order</button>
+  <button class="btn btn-primary" (click)="toggleModal()">Add order</button>
+  <app-order-form-modal
+    *ngIf="showModal"
+    (closeModal)="toggleModal()"
+  ></app-order-form-modal>
 </div>
 <!-- Order shell content -->
 <app-orders-list [orders]="orders"></app-orders-list>

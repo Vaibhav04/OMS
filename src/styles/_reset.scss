@@ -1,16 +1,16 @@
 body {
   font-family: "Montserrat", sans-serif;
-
   line-height: 1.9;
+  background-color: var(--color-background-m);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 textarea,
 button {
   font-family: inherit;
   resize: none;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
 }

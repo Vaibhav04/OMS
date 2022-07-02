@@ -1,0 +1,64 @@
+<div class="backdrop" (click)="close()">
+</div>
+
+<div class="order-form-modal">
+  <div class="order-form-modal__header">
+    <h2>Add Order</h2>
+    <span (click)="close()">
+      <fa-icon [icon]="icons.faClose" [size]="'2x'"></fa-icon>
+    </span>
+  </div>
+
+  <form [formGroup]="orderForm" (submit)="addOrder()">
+    <div class="form-group">
+      <label for="customer-name">Customer Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="customer-name"
+        placeholder="Customer Name"
+        formControlName="customerName"
+      />
+    </div>
+    <div class="form-group">
+      <label for="date">Due date</label>
+      <input
+        type="date"
+        class="form-control"
+        id="date"
+        formControlName="dueDate"
+      />
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <textarea
+        type="address"
+        class="form-control"
+        id="address"
+        placeholder="Customer Address"
+        formControlName="address"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="customer-number">Address</label>
+      <input
+        type="text"
+        class="form-control"
+        id="customer-number"
+        placeholder="Customer Phone"
+        formControlName="phone"
+      />
+    </div>
+    <div class="form-group">
+      <label for="amount">Order Total</label>
+      <input
+        type="number"
+        class="form-control"
+        id="amount"
+        placeholder="Order Total"
+        formControlName="orderTotal"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
