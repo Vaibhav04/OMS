@@ -16,7 +16,10 @@ export class OrdersService {
 
   addOrder() {}
 
-  editOrder() {}
+  editOrder(orderId: number, order: IOrder) {
+    const foundIndex = this.orders.findIndex((order) => order.id === orderId);
+    this.orders[foundIndex] = { ...this.orders[foundIndex], ...order };
+  }
 
   deleteOrder(orderId: number | undefined) {
     const foundIndex = this.orders.findIndex((order) => order.id === orderId);

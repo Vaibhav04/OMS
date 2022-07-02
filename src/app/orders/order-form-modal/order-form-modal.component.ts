@@ -1,6 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { IOrder } from '../order';
+import { OrdersService } from '../orders.service';
 
 @Component({
   selector: 'app-order-form-modal',
@@ -8,24 +10,57 @@ import { faClose } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./order-form-modal.component.scss'],
 })
 export class OrderFormModalComponent implements OnInit {
+  @Input() formType: String = '';
+  @Input() selectedOrder: IOrder = {
+    id: 0,
+    customerName: '',
+    customerAddress: '',
+    dueDate: '',
+    price: 0,
+    phone: '',
+  };
+
   @Output() closeModal = new EventEmitter();
   icons = {
     faClose,
   };
   orderForm: FormGroup = this.fb.group({
-    customerName: [''],
-    dueDate: [''],
-    address: [''],
-    phone: [''],
-    orderTotal: [''],
+    customerName: [this.selectedOrder.customerName],
+    dueDate: [this.selectedOrder.dueDate],
+    customerAddress: [this.selectedOrder.customerAddress],
+    phone: [this.selectedOrder.phone],
+    price: [this.selectedOrder.price],
   });
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private orderService: OrdersService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.formType === 'edit') {
+      this.patchFormValues();
+    }
+  }
+
+  patchFormValues() {
+    this.orderForm.patchValue({
+      customerName: this.selectedOrder.customerName,
+      dueDate: this.selectedOrder.dueDate,
+      customerAddress: this.selectedOrder.customerAddress,
+      phone: this.selectedOrder.phone,
+      price: this.selectedOrder.price,
+    });
+  }
 
   close() {
     this.closeModal.emit();
   }
 
-  addOrder() {}
+  submitForm() {
+    if (this.formType === 'edit') {
+      this.editOrder();
+    }
+  }
+
+  editOrder() {
+    this.orderService.editOrder(this.selectedOrder.id, this.orderForm.value);
+    this.close();
+  }
 }

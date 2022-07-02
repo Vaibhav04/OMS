@@ -20,7 +20,7 @@
       <td>{{ order.price | currency }}</td>
       <td>
         <div class="order__actions">
-          <span (click)="editOrder(order.id)">
+          <span (click)="editOrder(order)">
             <fa-icon [icon]="icons.faEdit" [size]="'1x'"></fa-icon>
           </span>
           <span (click)="openPopup(order.id)">
@@ -32,6 +32,14 @@
   </tbody>
 </table>
 
+<!-- Edit order Modal -->
+<app-order-form-modal
+  *ngIf="isModalOpen"
+  [formType]="'edit'"
+  [selectedOrder]="selectedOrder"
+  (closeModal)="toggleModal()"
+></app-order-form-modal>
+<!-- Confirm popup -->
 <app-popup
   *ngIf="isPopupOpen"
   (continue)="deleteOrder()"

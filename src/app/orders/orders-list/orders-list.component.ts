@@ -15,14 +15,28 @@ export class OrdersListComponent implements OnInit {
     faTrashCan,
   };
   isPopupOpen = false;
+  isModalOpen = false;
   selectedOrderId: number | undefined;
+  selectedOrder: IOrder = {
+    id: 0,
+    customerName: '',
+    customerAddress: '',
+    dueDate: '',
+    price: 0,
+    phone: '',
+  };
 
   constructor(private orderService: OrdersService) {}
 
   ngOnInit(): void {}
 
-  editOrder(orderId: number) {
-    // !TODO Open popup with order data
+  editOrder(selectedOrder: IOrder) {
+    this.selectedOrder = selectedOrder;
+    this.toggleModal();
+  }
+
+  toggleModal() {
+    this.isModalOpen = !this.isModalOpen;
   }
 
   openPopup(orderId: number) {

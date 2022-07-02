@@ -1,5 +1,4 @@
-<div class="backdrop" (click)="close()">
-</div>
+<div class="backdrop" (click)="close()"></div>
 
 <div class="order-form-modal">
   <div class="order-form-modal__header">
@@ -9,7 +8,7 @@
     </span>
   </div>
 
-  <form [formGroup]="orderForm" (submit)="addOrder()">
+  <form [formGroup]="orderForm" (submit)="submitForm()">
     <div class="form-group">
       <label for="customer-name">Customer Name</label>
       <input
@@ -36,7 +35,7 @@
         class="form-control"
         id="address"
         placeholder="Customer Address"
-        formControlName="address"
+        formControlName="customerAddress"
       ></textarea>
     </div>
     <div class="form-group">
@@ -56,7 +55,7 @@
         class="form-control"
         id="amount"
         placeholder="Order Total"
-        formControlName="orderTotal"
+        formControlName="price"
       />
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
