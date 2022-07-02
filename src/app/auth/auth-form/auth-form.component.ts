@@ -11,8 +11,8 @@ export class AuthFormComponent implements OnInit {
   @Input() formType: string = '';
   authForm: FormGroup = this.fb.group({
     username: ['', [Validators.required]],
-    email: ['newuser@gmail.com', [Validators.required, Validators.email]],
-    password: ['newuser3', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
     rememberMe: [false],
   });
 
@@ -35,5 +35,16 @@ export class AuthFormComponent implements OnInit {
 
   register() {
     // !TODO Add method in service to register
+  }
+
+  // Getters for form fields
+  get email() {
+    return this.authForm.get('email');
+  }
+  get username() {
+    return this.authForm.get('username');
+  }
+  get password() {
+    return this.authForm.get('password');
   }
 }
