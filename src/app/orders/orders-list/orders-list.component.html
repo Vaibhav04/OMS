@@ -23,7 +23,7 @@
           <span (click)="editOrder(order.id)">
             <fa-icon [icon]="icons.faEdit" [size]="'1x'"></fa-icon>
           </span>
-          <span (click)="deleteOrder(order.id)">
+          <span (click)="openPopup(order.id)">
             <fa-icon [icon]="icons.faTrashCan" [size]="'1x'"></fa-icon>
           </span>
         </div>
@@ -31,3 +31,9 @@
     </tr>
   </tbody>
 </table>
+
+<app-popup
+  *ngIf="isPopupOpen"
+  (continue)="deleteOrder()"
+  (cancel)="togglePopup()"
+></app-popup>

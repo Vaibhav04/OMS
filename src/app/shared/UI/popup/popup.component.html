@@ -1,0 +1,18 @@
+<div class="backdrop" (click)="onCancel()"></div>
+<div class="popup">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Are you sure to proceed?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="onContinue()">
+          Continue
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

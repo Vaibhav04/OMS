@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { faEdit, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import { IOrder } from '../order';
+import { OrdersService } from '../orders.service';
 
 @Component({
   selector: 'app-orders-list',
@@ -13,7 +14,10 @@ export class OrdersListComponent implements OnInit {
     faEdit,
     faTrashCan,
   };
-  constructor() {}
+  isPopupOpen = false;
+  selectedOrderId: number | undefined;
+
+  constructor(private orderService: OrdersService) {}
 
   ngOnInit(): void {}
 
@@ -21,7 +25,17 @@ export class OrdersListComponent implements OnInit {
     // !TODO Open popup with order data
   }
 
-  deleteOrder(orderId: number) {
-    // !Todo Ask for confirmation before deleting order
+  openPopup(orderId: number) {
+    this.selectedOrderId = orderId;
+    this.togglePopup();
+  }
+
+  togglePopup() {
+    this.isPopupOpen = !this.isPopupOpen;
+  }
+
+  deleteOrder() {
+    this.orderService.deleteOrder(this.selectedOrderId);
+    this.togglePopup();
   }
 }
