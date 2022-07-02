@@ -1,4 +1,4 @@
-<form (ngSubmit)="submitForm()" [formGroup]="authForm">
+<form (ngSubmit)="submitForm()" [formGroup]="authForm" class="auth-form">
   <div class="form-group" *ngIf="formType === 'register'">
     <label for="username">Username</label>
     <input
@@ -40,7 +40,10 @@
     <label class="form-check-label" for="remember">Remember me</label>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
-  <p [routerLink]="['/auth', formType === 'register' ? 'login' : 'register']">
-    Click here to {{ formType === "register" ? "Login" : "Register" }}
+  <p class="form-action">
+    <a [routerLink]="['/auth', formType === 'register' ? 'login' : 'register']"
+      >Click here</a
+    >
+    to {{ formType === "register" ? "Login" : "Register" }}
   </p>
 </form>
