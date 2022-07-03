@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IOrder } from '../order';
-import { OrdersService } from '../orders.service';
 
 @Component({
   selector: 'app-orders-shell',

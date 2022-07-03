@@ -14,7 +14,9 @@ export class OrdersService {
     return of(this.orders);
   }
 
-  addOrder() {}
+  addOrder(order: IOrder) {
+    this.orders.unshift(order);
+  }
 
   editOrder(orderId: number, order: IOrder) {
     const foundIndex = this.orders.findIndex((order) => order.id === orderId);
