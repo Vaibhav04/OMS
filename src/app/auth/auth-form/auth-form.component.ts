@@ -1,11 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-auth-form',
@@ -15,38 +11,41 @@ import { Router } from '@angular/router';
 export class AuthFormComponent implements OnInit {
   @Input() formType: string = '';
   authForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    username: ['', [Validators.required]],
     password: ['', [Validators.required]],
     rememberMe: [false],
   });
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  hasServerErrors: boolean = false;
+  serverError: string = '';
 
-  ngOnInit(): void {
-    // Programtically adding "username" field if formType is 'register
-    if (this.formType === 'register') {
-      this.authForm.addControl(
-        'username',
-        new FormControl('', [Validators.required])
-      );
-    }
-  }
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
-  submitForm() {
-    if (this.formType === 'login') {
-      this.login();
-    } else if (this.formType === 'register') {
-      this.register();
-    }
-    console.log(this.authForm);
-  }
+  ngOnInit(): void {}
 
   login() {
-    // !TODO Add method in service to login
+    this.authService.login(this.authForm.value).subscribe({
+      next: (val) => {
+        this.router.navigate(['/orders']);
+        console.log(val);
+      },
+      error: (error) => {
+        this.setServerError(error);
+      },
+    });
   }
 
-  register() {
-    // !TODO Add method in service to register
+  setServerError(error: any) {
+    this.hasServerErrors = true;
+    this.serverError = error.message;
+    setTimeout(() => {
+      this.hasServerErrors = false;
+      this.serverError = '';
+    }, 2000);
   }
 
   // Getters for form fields
