@@ -31,7 +31,6 @@ export class AuthFormComponent implements OnInit {
     this.authService.login(this.authForm.value).subscribe({
       next: (val) => {
         this.router.navigate(['/orders']);
-        console.log(val);
       },
       error: (error) => {
         this.setServerError(error);

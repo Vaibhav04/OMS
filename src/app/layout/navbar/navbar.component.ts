@@ -20,7 +20,6 @@ export class NavbarComponent implements OnInit {
   getUser() {
     this.authService.selectedUserChanges$.subscribe((user) => {
       if (user) {
-        console.log(user);
         this.user = user;
         this.isLoggedIn = true;
       } else {

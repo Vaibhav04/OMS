@@ -6,7 +6,11 @@
   background-color: var(--color-background);
   padding: 2vh 2vw;
   border-radius: 1.2rem;
-  width: 60%;
+  width: 50%;
+
+  &>button {
+    width: 100%;
+  }
 }
 
 .form-action {

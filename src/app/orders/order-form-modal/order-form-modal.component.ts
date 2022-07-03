@@ -65,7 +65,6 @@ export class OrderFormModalComponent implements OnInit {
   }
 
   addOrder() {
-    console.log(this.orderForm.value);
     const order = {
       // This id can also result into an duplicated one because i am generating in frontend
       id: Math.ceil(Math.random() * 300),
