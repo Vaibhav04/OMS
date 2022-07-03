@@ -1,8 +1,14 @@
 html {
 
   /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* Colors *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
-  --color-background: rgba(240, 233, 233, 0.5);
+  --color-primary: #55c57a;
+  --color-primary-light: #7ed56f;
+  --color-primary-dark: #28b485;
 
+  --color-white: #fff;
+  --color-black: #000;
+
+  --color-background: #eee;
   //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* Transition time *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*//
   --transition-time: 0.25s;
 

@@ -13,5 +13,25 @@
 
 .error {
   color: red;
-  ;
+}
+
+button,
+button:focus {
+  outline: none !important;
+}
+
+.button-primary {
+  border: 1px solid var(--color-primary) !important;
+  background-color: transparent;
+  border-radius: 1rem;
+  color: var(--color-primary) !important;
+  outline: none;
+  color: var(--color-primary);
+  transform: all var(--transition-time);
+}
+
+.button-primary:hover {
+  background-color: var(--color-primary);
+  color: white !important;
+  outline: none;
 }
