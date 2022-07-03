@@ -6,3 +6,7 @@ nav {
 .navbar-brand {
   color: var(--color-primary) !important;
 }
+
+.navbar-nav>.nav-item:nth-child(2) {
+  cursor: pointer;
+}
