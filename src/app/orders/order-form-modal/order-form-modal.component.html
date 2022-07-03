@@ -2,7 +2,7 @@
 
 <div class="order-form-modal">
   <div class="order-form-modal__header">
-    <h2>Add Order</h2>
+    <h2>{{ formType === "add" ? "Add" : "Edit" }} Order</h2>
     <span (click)="close()">
       <fa-icon [icon]="icons.faClose" [size]="'2x'"></fa-icon>
     </span>
@@ -18,6 +18,16 @@
         placeholder="Customer Name"
         formControlName="customerName"
       />
+      <div
+        *ngIf="
+          customerName?.invalid &&
+          (customerName?.dirty || customerName?.touched)
+        "
+      >
+        <p class="error" *ngIf="customerName?.errors?.['required']">
+          Customer name is required
+        </p>
+      </div>
     </div>
     <div class="form-group">
       <label for="date">Due date</label>
@@ -27,6 +37,11 @@
         id="date"
         formControlName="dueDate"
       />
+      <div *ngIf="dueDate?.invalid && (dueDate?.dirty || dueDate?.touched)">
+        <p class="error" *ngIf="dueDate?.errors?.['required']">
+          Due date is required
+        </p>
+      </div>
     </div>
     <div class="form-group">
       <label for="address">Address</label>
@@ -37,6 +52,16 @@
         placeholder="Customer Address"
         formControlName="customerAddress"
       ></textarea>
+      <div
+        *ngIf="
+          customerAddress?.invalid &&
+          (customerAddress?.dirty || customerAddress?.touched)
+        "
+      >
+        <p class="error" *ngIf="customerAddress?.errors?.['required']">
+          Customer Address is required
+        </p>
+      </div>
     </div>
     <div class="form-group">
       <label for="customer-number">Phone</label>
@@ -47,6 +72,11 @@
         placeholder="Customer Phone"
         formControlName="phone"
       />
+      <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
+        <p class="error" *ngIf="phone?.errors?.['required']">
+          Phone Number is required
+        </p>
+      </div>
     </div>
     <div class="form-group">
       <label for="amount">Order Total</label>
@@ -57,7 +87,18 @@
         placeholder="Order Total"
         formControlName="price"
       />
+      <div *ngIf="price?.invalid && (price?.dirty || price?.touched)">
+        <p class="error" *ngIf="price?.errors?.['required']">
+          Please enter order price.
+        </p>
+      </div>
     </div>
-    <button type="submit" class="btn button-primary">Submit</button>
+    <button
+      type="submit"
+      class="btn button-primary"
+      [disabled]="!orderForm.valid"
+    >
+      Submit
+    </button>
   </form>
 </div>

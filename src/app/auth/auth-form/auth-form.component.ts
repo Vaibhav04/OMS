@@ -1,5 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +15,6 @@ import { Router } from '@angular/router';
 export class AuthFormComponent implements OnInit {
   @Input() formType: string = '';
   authForm: FormGroup = this.fb.group({
-    username: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
     rememberMe: [false],
@@ -18,7 +22,15 @@ export class AuthFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Programtically adding "username" field if formType is 'register
+    if (this.formType === 'register') {
+      this.authForm.addControl(
+        'username',
+        new FormControl('', [Validators.required])
+      );
+    }
+  }
 
   submitForm() {
     if (this.formType === 'login') {

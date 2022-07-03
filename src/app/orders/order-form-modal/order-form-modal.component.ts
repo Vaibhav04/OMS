@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { IOrder } from '../order';
 import { OrdersService } from '../orders.service';
@@ -25,11 +25,14 @@ export class OrderFormModalComponent implements OnInit {
     faClose,
   };
   orderForm: FormGroup = this.fb.group({
-    customerName: [this.selectedOrder.customerName],
-    dueDate: [this.selectedOrder.dueDate],
-    customerAddress: [this.selectedOrder.customerAddress],
-    phone: [this.selectedOrder.phone],
-    price: [this.selectedOrder.price],
+    customerName: [this.selectedOrder.customerName, [Validators.required]],
+    dueDate: [this.selectedOrder.dueDate, [Validators.required]],
+    customerAddress: [
+      this.selectedOrder.customerAddress,
+      [Validators.required],
+    ],
+    phone: [this.selectedOrder.phone, [Validators.required]],
+    price: [this.selectedOrder.price, [Validators.required]],
   });
   constructor(private fb: FormBuilder, private orderService: OrdersService) {}
 
@@ -74,5 +77,22 @@ export class OrderFormModalComponent implements OnInit {
   editOrder() {
     this.orderService.editOrder(this.selectedOrder.id, this.orderForm.value);
     this.close();
+  }
+
+  // Getters for form fields
+  get customerName() {
+    return this.orderForm.get('customerName');
+  }
+  get dueDate() {
+    return this.orderForm.get('dueDate');
+  }
+  get customerAddress() {
+    return this.orderForm.get('customerAddress');
+  }
+  get phone() {
+    return this.orderForm.get('phone');
+  }
+  get price() {
+    return this.orderForm.get('price');
   }
 }
