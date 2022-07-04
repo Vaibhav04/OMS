@@ -71,6 +71,7 @@ export class OrderFormModalComponent implements OnInit {
       ...this.orderForm.value,
     };
     this.orderService.addOrder(order);
+    this.close();
   }
 
   editOrder() {

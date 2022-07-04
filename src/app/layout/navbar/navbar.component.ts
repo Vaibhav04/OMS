@@ -11,7 +11,7 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
   user: any;
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.getUser();
@@ -30,6 +30,6 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    window.location.replace('/auth');
+    this.router.navigate(['/']);
   }
 }

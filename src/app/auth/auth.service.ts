@@ -41,5 +41,6 @@ export class AuthService {
 
   logout() {
     this.storageService.deleteItem('user');
+    this.selectedUserSource.next(null);
   }
 }
