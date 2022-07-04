@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanLoad, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { StorageService } from '../services/storage/storage.service';
+import { StorageService } from '../../storage/storage.service';
 
 @Injectable({
   providedIn: 'root',
