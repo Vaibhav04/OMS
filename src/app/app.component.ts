@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import {
   NavigationCancel,
   NavigationEnd,
@@ -13,8 +13,9 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'OMS-Navtech';
+  title = 'OMS';
   loading = false;
+
   constructor(private router: Router) {}
   ngOnInit(): void {
     this.router.events.subscribe((routerEvent: any) =>

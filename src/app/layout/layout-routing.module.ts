@@ -20,6 +20,7 @@ const routes: Routes = [
         canActivate: [LoggedInGuard],
         // Load module only if authorized
         canLoad: [LoggedInGuard],
+        
         loadChildren: () =>
           import('../auth/auth.module').then((m) => m.AuthModule),
       },

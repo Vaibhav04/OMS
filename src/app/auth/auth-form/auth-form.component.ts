@@ -23,7 +23,9 @@ export class AuthFormComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) {
+    console.log(this.authForm.value.username);
+  }
 
   ngOnInit(): void {}
 
